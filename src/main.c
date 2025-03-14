@@ -357,7 +357,8 @@ int main() {
 	if (0 != gethostname(hostname, sizeof(hostname)))
 		return_error("unable to get hostname");
 	if (0 != getlogin_r(username, sizeof(username)))
-		return_error("unable to get username");
+	    snprintf(username, sizeof(username), "unknown");
+		//return_error("unable to get username");
 	if (0 > snprintf(homedir, sizeof(homedir), "/home/%s", username))
 		return_error("unable to create homedir string");
 
